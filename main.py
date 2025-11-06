@@ -2,6 +2,8 @@ from tkinter import *
 from tkinter import messagebox
 import pandas as pd
 from random import choice, randint
+from playsound import playsound
+
 
 BACKGROUND_COLOR = "#B1DDC6"
 FONT_NAME = "Ariel"
@@ -39,8 +41,10 @@ def word_is_known():
     if not whole_words_dic:
         canvas.itemconfig(title_text, text= "Great Job!", fill= "#020203")
         canvas.itemconfig(word_text, text="You've learned all the words!🎓", fill= "#020203")
+        window.after(5, lambda: playsound("flash_card_app/sounds/congrats.mp3")) # success sound played when the user know all the words.
         window.after(3000, window.destroy)
         return
+    window.after(0, lambda: playsound("flash_card_app/sounds/correct_button_clicked.mp3")) # correct_answer sound played when the user click the right_button.
     generate_tr_word()
     
     
